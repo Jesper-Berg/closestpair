@@ -24,6 +24,7 @@ public class Point implements Comparable<Point>{
 	}
 
 	@Override
+	//Jämför efter y-koordinaten
 	public int compareTo(Point o) {
 		if(y > o.getY()){
 			return 1;

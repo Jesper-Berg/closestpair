@@ -10,14 +10,14 @@ public class Line {
 	
 	public Line(ArrayList<Point> all){
 		int half = all.size() / 2;
-		Comparator<? super Point> xComp = new XCOMP();
+		Comparator<? super Point> xComp = new XCOMP();	//Sorterar efter X-koordinaten
 		all.sort(xComp);
 		for(int i = 0; i < half - 1; i++){
 			leftHalf.add(all.get(i));
 			rightHalf.add(all.get(half + i));
 		}
 		double leftLastX = leftHalf.get(leftHalf.size() - 1).getX();
-		x = (leftLastX - rightHalf.get(rightHalf.size() - 1).getX()) / 2 + leftLastX; 
+		x = (leftLastX - rightHalf.get(rightHalf.size() - 1).getX()) / 2 + leftLastX; //Sätter linjen mellan de två närmsta punkterna
 	}
 	
 	public ArrayList<Point> getLeft(){
@@ -36,12 +36,12 @@ public class Line {
 		ArrayList<Point> all = leftHalf;
 		all.addAll(rightHalf);
 		ArrayList<Point> closeBy = new ArrayList<Point>();	
-		for(Point p : all){
+		for(Point p : all){								//Hittar alla punkter length ifrån linjen
 			if(Math.abs(p.getX() - x) <= length ){
 				closeBy.add(p);
 			}
 		}
-		closeBy.sort(null);
+		closeBy.sort(null);				//Sorterar efter y-koordinaten
 		return closeBy;
 	}
 
