@@ -6,9 +6,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		ArrayList<Point> points = new ArrayList<Point>();
-		for(int i = 1; i < 15; i++){
+		points.add(new Point(1, 1, 1));
+		for(int i = 2; i < 16; i++){
 			points.add(new Point(i, i*3.46, i*4.67));
 		}
+		points.add(new Point(16, 1.2, 1.2));
 		System.out.println(closestPair(points));
 	}
 	
@@ -26,7 +28,7 @@ public class Main {
 			for(int j = 1; j < 12; j++){
 				if(i + j < nearby.size() - 1){
 					Point fst = nearby.get(i);
-					Point snd = nearby.get(j);
+					Point snd = nearby.get(i + j);
 					if(fst.getDistance(snd) < minDist){
 						min = new PointPair(fst, snd);
 						minDist = min.distance();

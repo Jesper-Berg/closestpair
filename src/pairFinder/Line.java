@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Line {
-	private ArrayList<Point> leftHalf;
-	private ArrayList<Point> rightHalf;
+	private ArrayList<Point> leftHalf = new ArrayList<Point>();
+	private ArrayList<Point> rightHalf = new ArrayList<Point>();
 	private double x;
 	
 	public Line(ArrayList<Point> all){
 		int half = all.size() / 2;
 		Comparator<? super Point> xComp = new XCOMP();
 		all.sort(xComp);
-		leftHalf = (ArrayList<Point>) all.subList(0, half - 1);
-		rightHalf = (ArrayList<Point>) all.subList(half, all.size() - 1);
+		for(int i = 0; i < half - 1; i++){
+			leftHalf.add(all.get(i));
+			rightHalf.add(all.get(half + i));
+		}
 		double leftLastX = leftHalf.get(leftHalf.size() - 1).getX();
 		x = (leftLastX - rightHalf.get(rightHalf.size() - 1).getX()) / 2 + leftLastX; 
 	}
