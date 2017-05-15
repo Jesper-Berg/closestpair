@@ -3,8 +3,10 @@ package pairFinder;
 public class Point implements Comparable<Point>{
 	private double x;
 	private double y;
+	private int id;
 	
-	public Point(double x, double y){
+	public Point(int id, double x, double y){
+		this.id = id;
 		this.x = x;
 		this.y = y;
 	}
@@ -29,6 +31,10 @@ public class Point implements Comparable<Point>{
 			return -1;
 		}
 		return 0;
+	}
+	
+	public String toString(){
+		return "" + id;
 	}
 	
 	
