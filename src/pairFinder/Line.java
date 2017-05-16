@@ -1,6 +1,7 @@
 package pairFinder;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Line {
 	private ArrayList<Point> leftHalf = new ArrayList<Point>();
@@ -9,13 +10,12 @@ public class Line {
 	
 	public Line(ArrayList<Point> all){
 		int half = all.size() / 2;
-		all.sort(new XCOMP()); 				//Sorterar efter X-koordinaten
+		all.sort(new XComp()); 				//Sorterar efter X-koordinaten
 		for(int i = 0; i < half; i++){
 			leftHalf.add(all.get(i));
 			rightHalf.add(all.get(half + i));
 		}
-		double leftLastX = leftHalf.get(leftHalf.size() - 1).getX();
-		x = (leftLastX - rightHalf.get(rightHalf.size() - 1).getX()) / 2 + leftLastX; //Sätter linjen mellan de två närmsta punkterna
+		x = (leftHalf.get(leftHalf.size() - 1).getX() + rightHalf.get(0).getX()) / 2;//Sätter linjen mellan de två närmsta punkterna
 	}
 	
 	public ArrayList<Point> getLeft(){
@@ -24,10 +24,6 @@ public class Line {
 	
 	public ArrayList<Point> getRight(){
 		return rightHalf;
-	}
-	
-	public double getPos(){
-		return x;
 	}
 	
 	public ArrayList<Point> FindAndSortNearby(double length){
@@ -41,6 +37,20 @@ public class Line {
 		}
 		closeBy.sort(null);				//Sorterar efter y-koordinaten
 		return closeBy;
+	}
+	
+	private class XComp implements Comparator<Point> {
+
+		@Override
+		public int compare(Point arg0, Point arg1) {
+			if(arg0.getX() > arg1.getX()){
+				return 1;
+			} else if (arg0.getX() < arg1.getX()){
+				return -1;
+			}
+			return 0;
+		}
+
 	}
 
 }

@@ -22,14 +22,18 @@ public class Parser {
 		while(br.ready()){
 			String s = br.readLine().trim();
 			if (s.matches(pattern)){
-				String[] subS = s.split("\\s+");
-				int id = Integer.valueOf(subS[0]);
-				double x = Double.valueOf(subS[1]);
-				double y = Double.valueOf(subS[2]);
-				points.add(new Point(id, x, y));
+				points.add(createPoint(s));
 			}
 			
 		}
 		return points;
+	}
+	
+	public Point createPoint(String info){
+		String[] subS = info.split("\\s+");
+		int id = Integer.valueOf(subS[0]);
+		double x = Double.valueOf(subS[1]);
+		double y = Double.valueOf(subS[2]);
+		return new Point(id, x, y);
 	}
 }
