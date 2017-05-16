@@ -1,7 +1,6 @@
 package pairFinder;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Line {
 	private ArrayList<Point> leftHalf = new ArrayList<Point>();
@@ -10,9 +9,8 @@ public class Line {
 	
 	public Line(ArrayList<Point> all){
 		int half = all.size() / 2;
-		Comparator<? super Point> xComp = new XCOMP();	//Sorterar efter X-koordinaten
-		all.sort(xComp);
-		for(int i = 0; i < half - 1; i++){
+		all.sort(new XCOMP()); 				//Sorterar efter X-koordinaten
+		for(int i = 0; i < half; i++){
 			leftHalf.add(all.get(i));
 			rightHalf.add(all.get(half + i));
 		}

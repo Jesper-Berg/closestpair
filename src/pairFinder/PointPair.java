@@ -9,14 +9,6 @@ public class PointPair {
 		snd = b;
 	}
 	
-	public Point fst(){
-		return fst;
-	}
-	
-	public Point snd(){
-		return snd;
-	}
-	
 	public double distance(){
 		return fst.getDistance(snd);
 	}
