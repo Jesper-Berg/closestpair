@@ -28,7 +28,7 @@ public class Main {
 		double minDist = min.distance();										//Avståndet mellan närmsta paret
 		ArrayList<Point> nearby = line.FindAndSortNearby(min.distance());
 		for(int i = 0; i < nearby.size() - 1; i++){								//Kollar på punkterna nära linjen
-			for(int j = 1; j < 12; j++){
+			for(int j = 1; j < 16; j++){
 				if(i + j < nearby.size()){
 					PointPair maybe = new PointPair(nearby.get(i), nearby.get(i + j));
 					if(maybe.distance() < minDist){								//Byter ut min om två punkter nära linjen är närmre
